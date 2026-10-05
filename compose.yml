@@ -9,6 +9,8 @@ services:
       replicas: 1
     volumes:
       - myvol:/var/lib/mysql/
+    environment:
+      MYSQL_ROOT_PASSWORD = "devopspassword"
 
   application:
     image: appimage
