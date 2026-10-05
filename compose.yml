@@ -10,7 +10,7 @@ services:
     volumes:
       - myvol:/var/lib/mysql/
     environment:
-      MYSQL_ROOT_PASSWORD :"devopspassword"
+      MYSQL_ROOT_PASSWORD : "devopspassword"
 
   application:
     image: appimage
