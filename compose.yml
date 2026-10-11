@@ -2,20 +2,25 @@ version: "3.9"
 
 services:
   devopsdb:
-    image: dbimage
+    image: shaikmustafa/flm-oct:db
     ports:
       - "3306:3306"
-    volumes:
-      - myvol:/var/lib/mysql/
-    environment:
-      MYSQL_ROOT_PASSWORD : "devopspassword"
+    deploy:
+      replicas: 1
+    networks:
+      - mynetwork
 
   application:
-    image: appimage
+    image: shaikmustafa/flm-oct:javaapp
     ports:
       - "1111:8080"
+    deploy:
+      replicas: 3
     depends_on:
       - devopsdb
+    networks:
+      - mynetwork
 
-volumes:
-  myvol:
+networks:
+  mynetwork:
+    driver: overlay
